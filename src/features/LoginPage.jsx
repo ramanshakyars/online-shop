@@ -5,4 +5,4 @@ function LoginPage() {
         </div>
     )
 }
-return LoginPage;
+export default LoginPage;
