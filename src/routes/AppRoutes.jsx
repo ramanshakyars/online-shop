@@ -1,17 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "../features/LoginPage";
-import RegisterPage from "../features/RegisterPage";
-import ForgetPassword from "../features/ForgetPassword";
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "../features/auth/LoginPage";
+import RegisterPage from "../features/auth/RegisterPage";
+import ForgetPassword from "../features/auth/ForgetPassword";
+import ShopPage from "../features/shop/ShopPage";
 
 function AppRoutes() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/forget-password" element={<ForgetPassword />} />
-            </Routes>
-        </Router>
+
+        <Routes>
+            <Route path="/" element={<ShopPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forget-password" element={<ForgetPassword />} />
+        </Routes>
+
     );
 }
 
