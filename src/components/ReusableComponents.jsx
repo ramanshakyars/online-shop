@@ -1,30 +1,16 @@
-export function ProductCard(productDetails) {
+export function ProductCard({ product }) {
     return <div>
-        Product Card
+        <div className="row">
+            <div className="col-sm-3">
+                <img src="{productDetails.image}" alt="" />
+            </div>
+            <h6>{product.name}</h6>
+            <h6>{product.price}</h6>
+            <button>add Quantity</button>
+            <button>Add to Cart</button>
+        </div>
     </div>;
 }
 
-export function CartCard(productDetails) {
-    return <div>
-        Cart Card
-    </div>
-}
 
-export function CheckoutCard(productDetails) {
-    return <div>
-        Checkout Card
-    </div>
-}
-
-export function OrderCard(productDetails) {
-    return <div>
-        Order Card
-    </div>
-}
-
-export function Button(){
-    return <div>
-        Button
-    </div>
-}
 
