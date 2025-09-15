@@ -4,11 +4,11 @@ import RegisterPage from "../features/auth/RegisterPage";
 import ForgetPassword from "../features/auth/ForgetPassword";
 import ShopPage from "../features/shop/ShopPage";
 
-function AppRoutes() {
+function AppRoutes( {searchText, setSearchText} ) {
     return (
 
         <Routes>
-            <Route path="/" element={<ShopPage />} />
+            <Route path="/" element={<ShopPage searchText={searchText} setSearchText={setSearchText} />}  />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/forget-password" element={<ForgetPassword />} />
