@@ -1,45 +1,48 @@
 import PathConfig from "../../common/PathConfig";
-import HttpService from "../../services/HttpService"
+import HttpService from "../../services/HttpService";
 import { useState, useEffect } from "react";
 import ToasterService from "../../services/TosterService";
 import { ProductCard } from "../../components/ReusableComponents";
+
 function ShopPage({ searchText, setSearchText }) {
-    const [products, setProducts] = useState([]);
-    // const [filteredProducts, setFilteredProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
-
-    const getProducts = async () => {
-        try {
-            const product = await HttpService.get(PathConfig.GET_PRODUCTS);
-            ToasterService.showSuccess("Product Fetched");
-            setProducts(product.data);
-            //  setFilteredProducts(response.data);
-
-        }
-        catch (error) {
-            ToasterService.showError(error.message);
-        }
-
-    }
 
     useEffect(() => {
         getProducts();
-        filterProducts(searchText);
-    }, [])
+    }, []);
 
-    // filter products
+    useEffect(() => {
+        handleSearch(searchText);
+    }, [searchText, allProducts]);
 
-    const filterProducts = (searchText) => {
-        setSearchText(searchText);
-        const filteredProducts = products.filter((product) =>
-            product.name.toLowerCase().includes(filterProducts.toLowerCase() &&
-                product.category.toLowerCase().includes(searchText.toLowerCase()) &&
-                product.description.toLowerCase().includes(searchText.toLowerCase()) &&
-                product.price.toLowerCase().includes(searchText.toLowerCase())
+    const getProducts = async () => {
+        try {
+            const response = await HttpService.get(PathConfig.GET_PRODUCTS);
+            ToasterService.showSuccess("Products Fetched");
+            setAllProducts(response.data);
+            setFilteredProducts(response.data);
+        } catch (error) {
+            ToasterService.showError(error.message);
+        }
+    };
 
-            ));
-        setProducts(filteredProducts);
-    }
+    const handleSearch = (searchText) => {
+        if (!searchText) {
+            setFilteredProducts(allProducts);
+        } else {
+            const filtered = allProducts.filter((product) =>
+                [product.name, product.category, product.description]
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase())
+            );
+            setFilteredProducts(filtered);
+        }
+    };
+
+
 
 
 
@@ -47,8 +50,8 @@ function ShopPage({ searchText, setSearchText }) {
         <div className="container my-4">
             <h1 className="mb-4">Shop Page</h1>
             <div className="row">
-                {products.length > 0 ? (
-                    products.map((product) => (
+                {filteredProducts.length > 0 ? (
+                    filteredProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))
                 ) : (
@@ -56,6 +59,7 @@ function ShopPage({ searchText, setSearchText }) {
                 )}
             </div>
         </div>
-    )
+    );
 }
+
 export default ShopPage;
