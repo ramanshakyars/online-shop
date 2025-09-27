@@ -95,13 +95,16 @@ function ShopPage({ searchText, setSearchText }) {
 
                 {/* Products grid */}
                 <div className="col-9">
-                      {filteredProducts.length > 0 ? (
-                    filteredProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))
-                ) : (
-                    <p>No product found</p>
-                )}
+                    <div className="row">
+                        {filteredProducts.length > 0 ? (
+                            filteredProducts.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))
+                        ) : (
+                            <p>No product found</p>
+                        )}
+                    </div>
+
                 </div>
             </div>
         </div>

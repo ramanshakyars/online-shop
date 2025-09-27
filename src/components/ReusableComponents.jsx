@@ -1,5 +1,3 @@
-
-
 export function ProductCard({ product }) {
     const productImage =
         product.images && product.images.length > 0
@@ -7,7 +5,7 @@ export function ProductCard({ product }) {
             : "https://via.placeholder.com/300x200";
 
     return (
-        <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div className="col-12 col-md-4 mb-4"> {/* 👈 Always 3 per row */}
             <div className="card h-100 shadow-sm border-0 product-card">
                 {/* Product Image */}
                 <img
