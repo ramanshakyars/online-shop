@@ -1,3 +1,4 @@
+        import { useEffect } from "react";
 import PathConfig from "../common/PathConfig";
 import HttpService from "../services/HttpService";
 import MessageService from "../services/TosterService";
@@ -8,15 +9,23 @@ export function ProductCard({ product }) {
             ? product.images[0]
             : "https://via.placeholder.com/300x200";
 
-            const addToCart = async (product) => {  
-                const productRequest = {
-                    productId: product.id,
-                    quantity: 1
-                };
-                const cart = await HttpService.post(PathConfig.addItemToCart, productRequest);
-                console.log(cart);
-                MessageService.showSuccess("Product added to cart");                
-            }
+    const addToCart = async (product) => {
+        const productRequest = {
+            item: [{
+                productId: product.id,
+                quantity: product.quantity || 1,
+            }],
+            quantity: product.quantity || 1
+        };
+        console.log(productRequest);
+        const cart = await HttpService.post(PathConfig.addItemToCart, productRequest);
+        console.log(cart);
+        MessageService.showSuccess("Product added to cart");
+    }
+
+    useEffect(() => {
+        console.log(product);
+    }, [product]);
 
     return (
         <div className="col-12 col-md-4 mb-4"> {/* 👈 Always 3 per row */}
@@ -49,7 +58,7 @@ export function ProductCard({ product }) {
                         <button className="btn btn-outline-secondary btn-sm">
                             <i className="bi bi-plus-circle me-1"></i> Quantity
                         </button>
-                        <button onClick={addToCart} className="btn btn-primary btn-sm">
+                        <button onClick={() => addToCart(product)} className="btn btn-primary btn-sm">
                             <i className="bi bi-cart me-1"></i> Add
                         </button>
                     </div>

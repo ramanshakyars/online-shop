@@ -14,6 +14,7 @@ function AppRoutes( {searchText, setSearchText} ) {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/forget-password" element={<ForgetPassword />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/login" element={<LoginPage />} />
             
         </Routes>
 

@@ -70,10 +70,16 @@ function Navbar({ searchText, setSearchText }) {
               >
                 Wishlist
               </NavLink>
+              <NavLink
+                to={"/login"}
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white"
+              >
+                Login
+              </NavLink>
             </div>
 
             {/* Profile Dropdown */}
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+            {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2">
               <button className="relative flex rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 <img
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
@@ -81,7 +87,7 @@ function Navbar({ searchText, setSearchText }) {
                   className="h-8 w-8 rounded-full"
                 />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
