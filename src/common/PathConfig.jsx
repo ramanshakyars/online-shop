@@ -4,6 +4,10 @@ const PathConfig = {
     REGISTER: "/auth/register",
     FORGET_PASSWORD: "/auth/forget-password",
     GET_PRODUCTS: "/public/all/products",
+
+    // cart 
+    addItemToCart: "/cart/add-item-to-cart",
+    GET_CART_ITEMS: "/cart/add-item-to-cart",
 };
 
 export default PathConfig;

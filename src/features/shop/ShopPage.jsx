@@ -67,7 +67,7 @@ function ShopPage({ searchText, setSearchText }) {
     };
 
     return (
-        <div className="container my-4">
+        <div className="container-fluid my-4">
             <h1 className="mb-4">Shop Page</h1>
             <div className="row">
                 {/* Sidebar filters */}
